@@ -1,0 +1,13 @@
+{
+  "name": "cyberguard",
+  "version": "1.0.0",
+  "description": "Full-stack React & FastAPI Application",
+  "scripts": {
+    "dev:frontend": "cd frontend && npm run dev",
+    "dev:backend": "cd backend && .\\venv\\Scripts\\uvicorn app.main:app --reload --host 0.0.0.0 --port 8000",
+    "dev": "concurrently \"npm run dev:frontend\" \"npm run dev:backend\""
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
