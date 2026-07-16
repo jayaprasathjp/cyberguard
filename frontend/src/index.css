@@ -1,8 +1,130 @@
 @import "tailwindcss";
 
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    Roboto, Helvetica, Arial, sans-serif;
+}
 
 @layer base {
-  body {
-    @apply bg-gray-900 text-gray-100 antialiased;
+  html {
+    color-scheme: dark;
   }
+
+  body {
+    @apply text-slate-100 antialiased;
+    font-family: var(--font-sans);
+    background-color: #060a15;
+    background-image:
+      radial-gradient(1100px 620px at 92% -8%, rgba(56, 132, 255, 0.18), transparent 60%),
+      radial-gradient(900px 520px at -8% 108%, rgba(16, 185, 129, 0.14), transparent 55%),
+      radial-gradient(700px 500px at 50% 50%, rgba(99, 102, 241, 0.06), transparent 70%);
+    background-attachment: fixed;
+    min-height: 100vh;
+  }
+
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+@layer components {
+  .card {
+    @apply bg-slate-900/40 backdrop-blur-xl border border-white/10 rounded-2xl
+      shadow-xl shadow-black/30;
+  }
+
+  .surface {
+    @apply bg-white/5 border border-white/10 rounded-xl;
+  }
+
+  .btn-primary {
+    @apply text-white font-semibold rounded-xl transition-all duration-200
+      shadow-lg shadow-blue-950/40 active:scale-[0.98];
+    background-image: linear-gradient(120deg, #2563eb 0%, #0ea5e9 100%);
+  }
+  .btn-primary:hover:not(:disabled) {
+    filter: brightness(1.12);
+    box-shadow: 0 10px 30px -8px rgba(37, 99, 235, 0.55);
+  }
+  .btn-primary:disabled {
+    @apply opacity-40 cursor-not-allowed;
+  }
+
+  .btn-accent {
+    @apply text-white font-semibold rounded-xl transition-all duration-200
+      shadow-lg shadow-fuchsia-950/40 active:scale-[0.98];
+    background-image: linear-gradient(120deg, #7c3aed 0%, #db2777 100%);
+  }
+  .btn-accent:hover:not(:disabled) {
+    filter: brightness(1.12);
+  }
+  .btn-accent:disabled {
+    @apply opacity-40 cursor-not-allowed;
+  }
+
+  .input {
+    @apply bg-slate-950/60 border border-white/10 rounded-xl text-slate-100
+      placeholder:text-slate-500 focus:outline-none focus:ring-2
+      focus:ring-blue-500/60 focus:border-blue-500/40 transition-shadow;
+  }
+
+  .chip {
+    @apply bg-white/5 hover:bg-white/10 border border-white/10 rounded-full
+      transition-colors text-slate-300;
+  }
+
+  .gradient-text {
+    @apply text-transparent bg-clip-text;
+    background-image: linear-gradient(120deg, #60a5fa 0%, #34d399 100%);
+  }
+}
+
+/* Scrollbars */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(148, 163, 184, 0.28) transparent;
+}
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.28);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.45);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.animate-fade-in {
+  animation: fadeInUp 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes pulseRing {
+  0% {
+    box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.5);
+  }
+  70% {
+    box-shadow: 0 0 0 6px rgba(52, 211, 153, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(52, 211, 153, 0);
+  }
+}
+.pulse-dot {
+  animation: pulseRing 2s infinite;
 }

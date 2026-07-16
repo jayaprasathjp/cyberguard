@@ -1,3 +1,9 @@
 fastapi==0.115.0
 uvicorn[standard]
 pydantic
+python-multipart
+pillow
+
+# Optional: enables the LLM refinement pass for scam detection.
+# The app runs fully offline without it (heuristics only).
+# langchain-google-genai
